@@ -31,10 +31,7 @@
         <td>{{e.salary}}</td>
         <td>{{e.phone}}</td>
         <td>{{e.hire_date}}</td>
-        <form method="POST" action="{% url "delete" e.id %}">
-            {% csrf_token %}
-        <td><button  class="btn btn-danger" type="submit">Delete</button></td>
-        </form>
+        <td><a href="{% url "update" e.id %}" class="btn btn-warning" type="submit">Update</a></td>
       </tr>
       {% endfor %}
     </tbody>

@@ -34,6 +34,24 @@ def show_view(request):
     context = {'emp':emp}
     return render (request, 'home/delete.html', locals())
 
+def update_emp(request, pk):
+    obj = Employee.objects.get(pk=pk)
+
+    form = EmployeeForm(instance=obj)
+    if request.method == 'POST':
+        form = EmployeeForm(request.POST, files=request.FILES, instance=obj)
+        if form.is_valid():
+            form.save()
+            return redirect("emp")
+    
+    template_name = "home/add_emp.html"
+    return render (request, template_name, locals())
+
+def update_emp1(request):
+    emp = Employee.objects.all()
+    context = {'emp': emp}
+    template_name = "home/update.html"
+    return render (request, template_name, locals())
 
 def delete_view(request, pk):
     # print(pk)
